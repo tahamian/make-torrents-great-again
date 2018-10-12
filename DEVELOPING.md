@@ -6,15 +6,15 @@ Install NodeJS from [here](https://nodejs.org/en/)
 
 ## Building from Source
 
-Install electron globally with the command
+Install electron and angular globally with:
 
 ```
 npm i -g electron
+npm i -g electron@angular/cli
 ```
 
 Download the source code via
 
-```
 git clone https://gitlab.cas.mcmaster.ca/velechva/make-torrents-great-again.git
 ```
 
@@ -38,3 +38,7 @@ or run the test suite with
 ```
 npm test
 ```
+
+## Developing
+
+MTGA uses Electron.JS and Vue.JS, as well as W3.css for most css templating.

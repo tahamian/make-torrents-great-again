@@ -10,7 +10,8 @@
   },
   "author": "Victor Velechovsky, Amandeep Panesar, Taha Mian",
   "license": "SEE LICENSE IN LICENSE.md",
-  "devDependencies": {
-    "electron": "^3.0.2"
+  "dependencies": {
+    "electron": "^3.0.2",
+    "electron-window-state": "^5.0.1"
   }
 }
