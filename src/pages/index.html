@@ -1,11 +1,19 @@
 <html>
   <head>
+    <script src="./../res/translations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-i18n/dist/vue-i18n.js"></script>
+
     <link rel="stylesheet" href="./w3.css"/>
 
     <link rel="stylesheet" href="./common.css"/>
   </head>
   <body>
-    <h2>Hello</h2>
+    <div id="app">
+      <h2>
+          {{ $t("message.hello") + " " + $t("generic.world") }}
+        </h2>
+    </div>
   </body>
+  <script src="app-bootstrap.js"></script>
 </html>
