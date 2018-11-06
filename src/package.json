@@ -12,6 +12,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "dependencies": {
     "electron": "^3.0.2",
-    "electron-window-state": "^5.0.1"
+    "electron-window-state": "^5.0.1",
+    "vue-i18n": "^8.1.1"
   }
 }

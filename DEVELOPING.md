@@ -15,6 +15,7 @@ npm i -g electron@angular/cli
 
 Download the source code via
 
+```
 git clone https://gitlab.cas.mcmaster.ca/velechva/make-torrents-great-again.git
 ```
 
@@ -41,4 +42,4 @@ npm test
 
 ## Developing
 
-MTGA uses Electron.JS and Vue.JS, as well as W3.css for most css templating.
+MTGA uses Electron.JS and Vue.JS, as well as Bootstrap for most css templating.
