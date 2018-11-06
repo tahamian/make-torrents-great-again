@@ -1,5 +1,32 @@
 {
   "static": {
     "LANGUAGE": "ENG-USA"
-  }
+  },
+  "torrentCategories": [
+    {
+      "name": "Music",
+      "id": 0,
+      "keywords": {
+        "single": 50,
+        "album": 50,
+        "music": 80
+      }
+    },
+    {
+      "name": "Movies",
+      "id": 1,
+      "keywords": {
+        "film": 80,
+        "movie": 80
+      }
+    },
+    {
+      "name": "TV",
+      "id": 2,
+      "keywords": {
+        "TV": 80,
+        "S[0-9]{1,2}E[0-9]{1,2}": 80
+      }
+    }
+  ]
 }

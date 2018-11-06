@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-getStatic(str) = () => {
+function getStatic(str) {
   if (!str) return '';
 
   let entry = this.config.static[entry];
@@ -10,7 +10,13 @@ getStatic(str) = () => {
   return entry.value || entry.default || '';
 }
 
-setStatic(str, val) = () => {
+function getTorrentCategories() {
+  let entry = this.config.torrentCategories;
+
+  return (entry && entry.length) ? entry : [];
+}
+
+function setStatic(str, val) {
   if (!str) return false;
 
   let entry = this.config.static[entry];
