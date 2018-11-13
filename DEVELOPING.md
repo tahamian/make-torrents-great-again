@@ -10,7 +10,6 @@ Install electron and angular globally with:
 
 ```
 npm i -g electron
-npm i -g electron@angular/cli
 ```
 
 Download the source code via
