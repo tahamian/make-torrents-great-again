@@ -1,35 +1,44 @@
 <template>
-  <div id="app">
-    <div id="wrapper">
-      <header class="center-all flex-row shadow p-3">
-        <div id="main-logo" class="center-all flex-row">
-          <img height="80px" width="80px" src="static/main-logo.svg">
-        </div>
-        <nav>
-        </nav>
-      </header>
-      <div id="sidebar" class="flex-col center-all">
-        <ul class="flex-col center-all full-height text-center">
-          <li>Add Torrent</li>
-          <li>Create Torrent</li>
-          <li>Settings</li>
-        </ul>
+  <div id="app" class="flex-row">
+    <div class="side-bar">
+      <div class="main-logo flex-row center-all">
+        <img src="static/main-logo.svg">
       </div>
+      <nav class="flex-col space-evenly">
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+          <img src="static/create.svg">
+          Create a Torrent
+        </div>
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+          <img src="static/add.svg">
+          Add a Torrent
+        </div>
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+          <img src="static/settings.svg">
+          Settings
+        </div>          
+      </nav>
     </div>
-    <router-view></router-view>
+    <div class="page-body">
+
+    </div>
   </div>
 </template>
 
 <script>
 import './common.css'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 export default {
   name: 'make-torrents-great-again',
   methods: {
     open (link) {
       this.$electron.shell.openExternal(link)
+    },
+    iconHoverOn (event) {
+      event.currentTarget.classList.add('icon-highlighted')
+    },
+    iconHoverOff (event) {
+      event.currentTarget.classList.remove('icon-highlighted')
     }
   }
 }
@@ -39,35 +48,51 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-body {
+body
+{
+  margin: 0px;
   font-family: 'Roboto';
 }
 
-ul,
-ul li {
-  list-style: none;
-}
-
-header {
-  height: 200px;
-  background-color: #386FFF;
-  box-shadow: 5px 10px;
-  margin-bottom: 0px;
-}
-
-#sidebar {
+.page-body
+{
+  width: 100%;
   height: 100vh;
-  min-width: 200px;
-  max-width: 200px;
-  background-color: #f0f0f0;
 }
 
-#main-logo {
-  flex: 2;
-  max-width: 200px;
+.side-bar
+{
+  height: 100vh;
+  width: 200px;
 }
 
-header nav {
-  flex: 8;
+.main-logo
+{
+  width: 200px;
+  height: 200px;
+  background-color: #70a0ff;
+}
+
+.main-logo img
+{
+  height: 100px;
+  width: 100px;
+}
+
+nav
+{
+  height: 85%;
+}
+
+nav img
+{
+  height: 70px;
+  width: 70px;
+  margin: 10px;
+}
+
+.icon-highlighted
+{
+  opacity: 0.5;
 }
 </style>
