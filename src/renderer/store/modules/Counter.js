@@ -1,5 +1,3 @@
-/* Example of a Vuex module */
-
 const state = {
   main: 0
 }
@@ -15,7 +13,6 @@ const mutations = {
 
 const actions = {
   someAsyncTask ({ commit }) {
-    // do something async
     commit('INCREMENT_MAIN_COUNTER')
   }
 }
