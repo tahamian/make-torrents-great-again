@@ -5,13 +5,9 @@ import App from './App'
 import router from './router'
 import store from './store'
 
-// import BootstrapVue from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue'
 
-// Vue.use(BootstrapVue)
-import Buefy from 'buefy'
-
-import 'buefy/dist/buefy.css'
-Vue.use(Buefy)
+Vue.use(BootstrapVue)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
