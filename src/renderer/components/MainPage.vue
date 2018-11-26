@@ -1,5 +1,7 @@
 <template>
+
 <div class="flex-col">
+  <router-link :to="{name : 'settings'}"> Hey</router-link>
   <header>
     <div class="torrent-categories flex-row space-evenly">
       <div><b>Music</b></div>
@@ -13,6 +15,7 @@
   <content>
     This is the body
   </content>
+
 </div>
 </template>
 
