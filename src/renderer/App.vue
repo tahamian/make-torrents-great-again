@@ -21,9 +21,10 @@
 </template>
 
 <script>
+// import Buefy from 'buefy'
 import './common.css'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 export default {
   name: 'make-torrents-great-again',
