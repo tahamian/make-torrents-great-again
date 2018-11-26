@@ -9,7 +9,6 @@
     <div class="search">
       <input type="text">
     </div>
-    <img class="search-icon" src="static/search.svg">
   </header>
   <content>
     This is the body
@@ -31,6 +30,11 @@ header
 {
   height: 150px;
   background-color: #70a0ff;
+}
+
+.torrent-categories
+{
+  height: 100%;
 }
 
 .torrent-categories div
@@ -55,6 +59,5 @@ header
   opacity: 0.7;
   position: absolute;
   top: 20px;
-  right: 80px;
 }
 </style>
