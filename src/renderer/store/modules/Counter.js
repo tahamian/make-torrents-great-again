@@ -1,3 +1,5 @@
+/* Example of a Vuex module */
+
 const state = {
   main: 0
 }
