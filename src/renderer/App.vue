@@ -26,6 +26,7 @@
 </template>
 
 <script>
+// import Buefy from 'buefy'
 import './common.css'
 
 export default {
