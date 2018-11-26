@@ -20,7 +20,7 @@
       </nav>
     </div>
     <div class="page-body">
-
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -35,11 +35,17 @@ export default {
     open (link) {
       this.$electron.shell.openExternal(link)
     },
+    addClass (element, className) {
+      element.classList.add(className)
+    },
+    remClass (element, className) {
+      element.classList.remove(className)
+    },
     iconHoverOn (event) {
-      event.currentTarget.classList.add('icon-highlighted')
+      this.addClass(event.currentTarget, 'icon-highlighted')
     },
     iconHoverOff (event) {
-      event.currentTarget.classList.remove('icon-highlighted')
+      this.remClass(event.currentTarget, 'icon-highlighted')
     }
   }
 }
@@ -51,6 +57,7 @@ export default {
 
 body
 {
+  overflow: hidden;
   margin: 0px;
   font-family: 'Roboto';
 }
@@ -64,13 +71,13 @@ body
 .side-bar
 {
   height: 100vh;
-  width: 200px;
+  width: 150px;
 }
 
 .main-logo
 {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background-color: #70a0ff;
 }
 
@@ -83,6 +90,12 @@ body
 nav
 {
   height: 85%;
+  border: 1px solid #c0c0c0;
+}
+
+nav div
+{
+    opacity: 0.5;
 }
 
 nav img
@@ -94,6 +107,6 @@ nav img
 
 .icon-highlighted
 {
-  opacity: 0.5;
+  opacity: 0.9;
 }
 </style>
