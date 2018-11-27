@@ -13,7 +13,7 @@
           <img src="static/add.svg">
           Add a Torrent
         </div>
-        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly" v-on:click="launchSettings">
           <img src="static/settings.svg">
           Settings
         </div>          
@@ -27,7 +27,6 @@
 </template>
 
 <script>
-// import Buefy from 'buefy'
 import './common.css'
 
 export default {

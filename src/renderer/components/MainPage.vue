@@ -1,7 +1,7 @@
 <template>
 
 <div class="flex-col">
-  <router-link :to="{name : 'settings'}"> Hey</router-link>
+  <!-- <router-link :to="{name : 'settings'}"> Hey</router-link> -->
   <header>
     <div class="torrent-categories flex-row space-evenly">
       <div><b>Music</b></div>
@@ -16,7 +16,14 @@
   <content>
     This is the body
   </content>
-
+  <div>
+    <b-button @click="modalShow = !modalShow">
+      Open Modal
+    </b-button>
+    <b-modal v-model="modalShow">
+      Hello From Modal!
+    </b-modal>
+  </div>
 </div>
 </template>
 
@@ -25,6 +32,11 @@ import './../common.css'
 
 export default {
   name: 'main-page',
+  data () {
+    return {
+      modalShow: false
+    }
+  },
   methods: {}
 }
 </script>
