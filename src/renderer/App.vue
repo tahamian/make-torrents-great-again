@@ -2,7 +2,7 @@
   <div id="app" class="flex-row">
     <div class="side-bar">
       <div class="main-logo flex-row center-all">
-        <img src="static/main-logo.svg">
+        <h1>∈</h1>
       </div>
       <nav class="flex-col space-evenly">
         <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
@@ -109,5 +109,14 @@ nav img
 .icon-highlighted
 {
   opacity: 0.9;
+}
+
+.main-logo h1
+{
+  font-size: 80px;
+  transform: rotate(10deg);
+  font-family: 'Roboto';
+  color: white;
+  text-shadow: 2px 2px 4px #707070;
 }
 </style>
