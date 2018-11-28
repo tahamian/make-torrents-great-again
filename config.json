@@ -21,10 +21,16 @@
   ],
   "SavedTorrents": [
     {
-      "name": "Grease"
+      "name": "Grease",
+      "category": "Movies"
     },
     {
-      "name": "Taxi Driver"
+      "name": "Taxi Driver",
+      "category": "Movies"
+    },
+    {
+      "name": "JJ",
+      "category": "Music"
     }
   ]
 }

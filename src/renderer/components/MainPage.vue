@@ -5,7 +5,7 @@
     <div class="torrent-categories flex-row space-evenly">
       <div
         v-bind:class="{ active: category.active }"
-        v-for="category in categories"
+        v-for="category in this.$store.state.TorrentCategories.categories"
         v-bind:key="category.name"
         @mouseover="categoryHoverOn($event)"
         @mouseleave="categoryHoverOff($event)"
@@ -20,7 +20,7 @@
   </header>
   <content>
     <div
-      v-for="torrent in this.$store.state.Torrents"
+      v-for="torrent in listTorrents"
       v-bind:key="torrent.name">
       <Torrent class="torrent-section" v-bind:torrent="torrent"></Torrent>
     </div>
@@ -34,14 +34,19 @@ import './../common.css'
 
 import Torrent from './Torrent.vue'
 
+import { mapActions } from 'vuex'
+
 export default {
   name: 'main-page',
   components: { Torrent },
   computed: {
-  },
-  created () {
-    this.categories = this.$store.state.TorrentCategories
-    this.categories[0].active = true
+    listTorrents () {
+      let activeCategory = this.$store.state.TorrentCategories.active.name
+
+      return this.$store.state.Torrents.filter((current) => {
+        return current.category === activeCategory
+      })
+    }
   },
   methods: {
     categoryHoverOn (event) {
@@ -51,8 +56,12 @@ export default {
       this.$parent.remClass(event.currentTarget, 'highlighted')
     },
     switchCategory (event) {
-      console.log('switch')
-    }
+      let activeName = event.currentTarget.children[0].innerHTML
+      this.setActiveTorrentCategory(activeName)
+    },
+    ...mapActions([
+      'setActiveTorrentCategory', 'set'
+    ])
   }
 }
 </script>
@@ -112,7 +121,7 @@ header
 .torrent-section
 {
   width: 100%;
-  height: 200px;
+  height: 150px;
   border-bottom: 1px solid #c0c0c0;
 }
 </style>

@@ -29,6 +29,8 @@
 <script>
 import './common.css'
 
+import './store/index.js'
+
 import StatsFooter from './components/StatsFooter.vue'
 
 export default {
