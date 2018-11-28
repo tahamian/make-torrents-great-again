@@ -1,19 +1,29 @@
 <template>
 
 <div class="flex-col">
-  <router-link :to="{name : 'settings'}"> Hey</router-link>
-  <header>
+  <header class="box-shadow">
     <div class="torrent-categories flex-row space-evenly">
-      <div><b>Music</b></div>
-      <div>Movies</div>
-      <div>Books</div>
+      <div
+        v-bind:class="{ active: category.active }"
+        v-for="category in categories"
+        v-bind:key="category.name"
+        @mouseover="categoryHoverOn($event)"
+        @mouseleave="categoryHoverOff($event)"
+        v-on:click="switchCategory($event)">
+        <span>{{ category.name }}</span>
+      </div>
     </div>
     <div class="search">
-      <input type="text">
+      <img class="search-icon" src="static/search.svg">
+      <input type="text" size="40">
     </div>
   </header>
   <content>
-    This is the body
+    <div
+      v-for="torrent in this.$store.state.Torrents"
+      v-bind:key="torrent.name">
+      <Torrent class="torrent-section" v-bind:torrent="torrent"></Torrent>
+    </div>
   </content>
 
 </div>
@@ -22,9 +32,28 @@
 <script>
 import './../common.css'
 
+import Torrent from './Torrent.vue'
+
 export default {
   name: 'main-page',
-  methods: {}
+  components: { Torrent },
+  computed: {
+  },
+  created () {
+    this.categories = this.$store.state.TorrentCategories
+    this.categories[0].active = true
+  },
+  methods: {
+    categoryHoverOn (event) {
+      this.$parent.addClass(event.currentTarget, 'highlighted')
+    },
+    categoryHoverOff (event) {
+      this.$parent.remClass(event.currentTarget, 'highlighted')
+    },
+    switchCategory (event) {
+      console.log('switch')
+    }
+  }
 }
 </script>
 
@@ -32,16 +61,20 @@ export default {
 header
 {
   height: 150px;
-  background-color: #70a0ff;
+  background-color: #386fff;
 }
 
 .torrent-categories
 {
   height: 100%;
+  font-size: 20px;
 }
 
 .torrent-categories div
 {
+  opacity: 0.7;
+  cursor: pointer;
+  margin-top: 40px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -53,14 +86,33 @@ header
 {
   opacity: 0.7;
   position: absolute;
+  display: flex;
   top: 20px;
-  right: 20px;
+  right: 10%;
 }
 
 .search-icon
 {
+  margin-right: 10px;
   opacity: 0.7;
-  position: absolute;
-  top: 20px;
+}
+
+.highlighted
+{
+  opacity: 1.0 !important;
+}
+
+.active
+{
+  opacity: 1.0 !important;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.torrent-section
+{
+  width: 100%;
+  height: 200px;
+  border-bottom: 1px solid #c0c0c0;
 }
 </style>

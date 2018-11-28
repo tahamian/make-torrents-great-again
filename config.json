@@ -1,0 +1,30 @@
+{
+  "TorrentCategories" : [
+    {
+      "name": "Music"
+    },
+    {
+      "name": "Movies"
+    },
+    {
+      "name": "T.V."
+    },
+    {
+      "name": "Books"
+    },
+    {
+      "name": "Applications"
+    },
+    {
+      "name": "Etc.."
+    }
+  ],
+  "SavedTorrents": [
+    {
+      "name": "Grease"
+    },
+    {
+      "name": "Taxi Driver"
+    }
+  ]
+}

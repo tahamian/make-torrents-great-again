@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="flex-row">
     <div class="side-bar">
-      <div class="main-logo flex-row center-all">
+      <div class="main-logo box-shadow flex-row center-all">
         <h1>∈</h1>
       </div>
       <nav class="flex-col space-evenly">
@@ -22,16 +22,18 @@
     <div class="page-body">
       <router-view></router-view>
     </div>
-    
+    <StatsFooter class="stats-footer"></StatsFooter>
   </div>
 </template>
 
 <script>
-// import Buefy from 'buefy'
 import './common.css'
+
+import StatsFooter from './components/StatsFooter.vue'
 
 export default {
   name: 'make-torrents-great-again',
+  components: { StatsFooter },
   methods: {
     open (link) {
       this.$electron.shell.openExternal(link)
@@ -79,7 +81,12 @@ body
 {
   width: 150px;
   height: 150px;
-  background-color: #70a0ff;
+  background-color: #386fff;
+}
+
+.box-shadow
+{
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .main-logo img
@@ -90,8 +97,8 @@ body
 
 nav
 {
-  height: 85%;
-  border: 1px solid #c0c0c0;
+  height: 100%;
+  border: 1px solid #e0e0e0;
 }
 
 nav div
@@ -109,6 +116,7 @@ nav img
 .icon-highlighted
 {
   opacity: 0.9;
+  cursor: pointer;
 }
 
 .main-logo h1
@@ -118,5 +126,15 @@ nav img
   font-family: 'Roboto';
   color: white;
   text-shadow: 2px 2px 4px #707070;
+}
+
+.stats-footer
+{
+  position: fixed;
+  bottom: 0px;
+  height: 30px;
+  border: 1px solid #e0e0e0;
+  right: 0px;
+  left: 150px;
 }
 </style>
