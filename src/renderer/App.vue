@@ -9,12 +9,12 @@
       </div>
 
       <nav class="flex-col space-evenly">
-        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" v-on:click="clickedPage('create')" class="flex-col space-evenly">
           <img src="static/create.svg">
           Create a Torrent
         </div>
 
-        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" v-on:click="clickedPage('add')" class="flex-col space-evenly">
           <img src="static/add.svg">
           Add a Torrent
         </div>
@@ -24,7 +24,7 @@
           Add a magnet link
         </div>
 
-        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" v-on:click="clickedPage('settings')" class="flex-col space-evenly">
           <img src="static/settings.svg">
           Settings
         </div>          
@@ -52,6 +52,9 @@ export default {
   name: 'make-torrents-great-again',
   components: { StatsFooter },
   methods: {
+    clickedPage (page) {
+      this.$router.push({name: page})
+    },
     open (link) {
       this.$electron.shell.openExternal(link)
     },
