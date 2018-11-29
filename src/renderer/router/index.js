@@ -8,12 +8,12 @@ export default new Router({
     {
       path: '/',
       name: 'main-page',
-      component: require('@/components/MainPage').default
+      component: require('@/components/TorrentsPage').default
     },
     {
-      path: '/MainPage/Settings',
+      path: '/TorrentsPage/Settings',
       name: 'settings',
-      component: require('@/components/MainPage/Settings').default
+      component: require('@/components/TorrentsPage/Settings').default
     },
     {
       path: '*',

@@ -1,11 +1,12 @@
+<!-- Torrent List Page -->
 <template>
 
 <div class="flex-col">
   <header class="box-shadow">
     <div class="torrent-categories flex-row space-evenly">
       <div
-        v-bind:class="{ active: category.active }"
-        v-for="category in this.$store.state.TorrentCategories.categories"
+        v-bind:class="{ active: category.name === $store.state.TorrentCategories.active.name }"
+        v-for="category in $store.state.TorrentCategories.categories"
         v-bind:key="category.name"
         @mouseover="categoryHoverOn($event)"
         @mouseleave="categoryHoverOff($event)"

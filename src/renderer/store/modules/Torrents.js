@@ -2,7 +2,13 @@
 
 let config = require('./../../../../config.json')
 
-const state = config.SavedTorrents
+const state = config.SavedTorrents.map((current) => {
+  current.downloadSpeed = 0
+  current.uploadSpeed = 0
+  current.peers = 0
+
+  return current
+})
 
 const mutations = {}
 

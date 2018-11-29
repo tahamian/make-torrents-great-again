@@ -4,21 +4,25 @@
       <div class="main-logo box-shadow flex-row center-all">
         <h1>∈</h1>
       </div>
+
       <nav class="flex-col space-evenly">
         <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
           <img src="static/create.svg">
           Create a Torrent
         </div>
+
         <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
           <img src="static/add.svg">
           Add a Torrent
         </div>
+
         <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
           <img src="static/settings.svg">
           Settings
         </div>          
       </nav>
     </div>
+    
     <div class="page-body">
       <router-view></router-view>
     </div>
