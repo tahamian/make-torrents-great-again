@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="flex-row">
-    <div class="side-bar">
+    <div class="side-bar flex-col space-between">
       <div
         class="main-logo box-shadow flex-row center-all"
         @mouseover="iconHoverOn($event)"
@@ -40,6 +40,9 @@
 
 <script>
 import './common.css'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import './store/index.js'
 
@@ -95,6 +98,7 @@ body
 {
   width: 150px;
   height: 150px;
+  min-height: 150px;
   background-color: #386fff;
 }
 
@@ -112,6 +116,8 @@ body
 nav
 {
   height: 100%;
+  width: 100%;
+  max-height: 100%;
   border: 1px solid #e0e0e0;
 }
 

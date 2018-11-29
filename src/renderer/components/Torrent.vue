@@ -25,8 +25,8 @@
     <div>{{ torrent.peers }}</div>
   </div>
 
-  <div class="torrent-icon flex-col center-all">
-    <button type="button" class="btn btn-danger">Delete</button>
+  <div class="torrent-icon flex-col center-all delete-torrent">
+    <button type="button" class="flex-col center-all btn"><img src="static/delete-forever.svg"></button>
   </div>
   
   <div class="torrent-icon flex-col center-all torrent-options">
@@ -79,5 +79,16 @@ export default {
   font-size: 20px;
   margin-right: 70px;
   font-weight: bold;
+}
+
+.delete-torrent *
+{
+  height: 40px;
+  width: 30px;
+}
+
+.delete-torrent button:hover
+{
+  background-color: #ff3060;
 }
 </style>
