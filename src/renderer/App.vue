@@ -1,7 +1,10 @@
 <template>
   <div id="app" class="flex-row">
     <div class="side-bar">
-      <div class="main-logo box-shadow flex-row center-all">
+      <div
+        class="main-logo box-shadow flex-row center-all"
+        @mouseover="iconHoverOn($event)"
+        @mouseleave="iconHoverOff($event)">
         <h1>∈</h1>
       </div>
 
@@ -14,6 +17,11 @@
         <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
           <img src="static/add.svg">
           Add a Torrent
+        </div>
+
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+          <img src="static/magnet.svg">
+          Add a magnet link
         </div>
 
         <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
