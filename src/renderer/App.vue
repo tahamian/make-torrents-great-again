@@ -96,6 +96,7 @@ body
 
 .main-logo
 {
+  font-weight: bold;
   width: 150px;
   height: 150px;
   min-height: 150px;

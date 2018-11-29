@@ -61,7 +61,7 @@ export default {
       this.setActiveTorrentCategory(activeName)
     },
     ...mapActions([
-      'setActiveTorrentCategory', 'set'
+      'setActiveTorrentCategory'
     ])
   }
 }
