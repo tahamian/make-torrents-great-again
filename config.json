@@ -1,6 +1,9 @@
 {
   "TorrentCategories" : [
     {
+      "name": "All"
+    },
+    {
       "name": "Music"
     },
     {

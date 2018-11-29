@@ -45,7 +45,7 @@ export default {
       let activeCategory = this.$store.state.TorrentCategories.active.name
 
       return this.$store.state.Torrents.filter((current) => {
-        return current.category === activeCategory
+        return activeCategory === 'All' || current.category === activeCategory
       })
     }
   },
