@@ -1,8 +1,8 @@
 <template>
-  <div id="upload" align="center">
+  <div id="upload">
     <h4>Add Torrent File:</h4>
     <div class="dropbox">
-       <input type="file" class="input-file">
+       <input type="file" id="file" ref="file" class="input-file" v-on:change="handleFileUpload()">
        <p>Drag your files here or click to browse</p>
     </div>
   </div>
@@ -11,6 +11,7 @@
   export default {
     data () {
       return {
+        file: '',
         stInital: 0,
         stSaving: 1,
         stSucess: 2,
@@ -24,6 +25,13 @@
       },
       isSaving () {
         return this.currentStatus === this.stSaving
+      }
+    },
+    methods: {
+      handleFileUpload () {
+        console.log('CHANGE')
+        this.file = this.$refs.file.files[0]
+        console.log(this.file)
       }
     }
   }
