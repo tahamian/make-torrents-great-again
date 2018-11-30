@@ -4,7 +4,8 @@
       <div
         class="main-logo box-shadow flex-row center-all"
         @mouseover="iconHoverOn($event)"
-        @mouseleave="iconHoverOff($event)">
+        @mouseleave="iconHoverOff($event)"
+        v-on:click="clickedPage('main-page')">
         <h1>∈</h1>
       </div>
 
