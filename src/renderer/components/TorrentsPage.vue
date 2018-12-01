@@ -16,10 +16,10 @@
     </div>
     <div class="search">
       <img class="search-icon" src="static/search.svg">
-      <input v-model="searchQuery" type="text" size="40">
+      <input type="text" size="40">
     </div>
   </header>
-  <content style="overflow-x: auto;">
+  <content>
     <div
       v-for="torrent in listTorrents"
       v-bind:key="torrent.name">
@@ -43,17 +43,13 @@ export default {
   computed: {
     listTorrents () {
       let activeCategory = this.$store.state.TorrentCategories.active.name
-      let searchQuery = this.searchQuery
 
       return this.$store.state.Torrents.filter((current) => {
-        return (activeCategory === 'All' || current.category === activeCategory) && (searchQuery === '' || this.queryMatch(searchQuery, current.name))
+        return activeCategory === 'All' || current.category === activeCategory
       })
     }
   },
   methods: {
-    queryMatch (searchQuery, torrentName) {
-      return torrentName.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0
-    },
     categoryHoverOn (event) {
       this.$parent.addClass(event.currentTarget, 'highlighted')
     },
@@ -67,11 +63,6 @@ export default {
     ...mapActions([
       'setActiveTorrentCategory'
     ])
-  },
-  data () {
-    return {
-      searchQuery: ''
-    }
   }
 }
 </script>
