@@ -16,7 +16,7 @@
     </div>
     <div class="search">
       <img class="search-icon" src="static/search.svg">
-      <input type="text" size="40">
+      <input v-model="searchQuery" type="text" size="40">
     </div>
   </header>
   <content>
@@ -43,13 +43,17 @@ export default {
   computed: {
     listTorrents () {
       let activeCategory = this.$store.state.TorrentCategories.active.name
+      let searchQuery = this.searchQuery
 
       return this.$store.state.Torrents.filter((current) => {
-        return activeCategory === 'All' || current.category === activeCategory
+        return (activeCategory === 'All' || current.category === activeCategory) && (searchQuery === '' || this.queryMatch(searchQuery, current.name))
       })
     }
   },
   methods: {
+    queryMatch (searchQuery, torrentName) {
+      return torrentName.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0
+    },
     categoryHoverOn (event) {
       this.$parent.addClass(event.currentTarget, 'highlighted')
     },
@@ -63,6 +67,11 @@ export default {
     ...mapActions([
       'setActiveTorrentCategory'
     ])
+  },
+  data () {
+    return {
+      searchQuery: ''
+    }
   }
 }
 </script>
