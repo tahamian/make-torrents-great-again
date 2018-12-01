@@ -12,7 +12,8 @@
 </table>
   </div>
   <div id="createTorrent" align = "center">
-    <button  v-on:click="createTorrentFile()">Create Torrent</button>
+    <!--<button  v-on:click="createTorrentFile()">Create Torrent</button>-->
+    <button  v-on:click="deleteMoreRows()">Unselect</button>
   </div>
   </div>
 </template>
@@ -22,7 +23,7 @@
       return {
         obj: [],
         store: [],
-        rowId: 0,
+        rowId: -1,
         write: []
       }
     },
@@ -30,11 +31,72 @@
       parse () {
         var input = this.$refs.file.files
         console.log(input)
+        this.rowId = input.length
         for (var i = 0; i < input.length; i++) {
           this.obj.push({'name': input[i].name, 'path': input[i].path, 'category': this.checkFileType(input[i])})
-          this.tableCreate(input[i].name, input[i].path)
+          this.addRow(input[i].name, input[i].path)
         }
         console.log(this.obj)
+      },
+      addRow (name, size) {
+        var table = document.getElementById('fileTable')
+        var row = table.insertRow(0)
+        var cell0 = row.insertCell(0)
+        var cell1 = row.insertCell(1)
+        var cell2 = row.insertCell(2)
+        cell0.innerHTML = '<input type="checkbox" id="' + this.getRowId() + '">'
+        cell1.innerHTML = name
+        cell2.innerHTML = size
+        console.log('File Name: ' + name + ' RowID: ' + this.rowId)
+      },
+      getRowId () {
+        this.rowId -= 1
+        return this.rowId
+      },
+      deleteMoreRows () {
+        var table = document.getElementById('fileTable')
+        // var rowCount = table.rows.length
+        var selectedRows = this.getCheckedBoxes()
+        selectedRows.forEach(function (currentValue) {
+          // this.deleteRowByCheckboxId(currentValue.id)
+          console.log('Deleting ' + currentValue.id)
+          table.deleteRow(currentValue.id)
+        })
+      },
+      getRowIdsFromElements ($array) {
+        var arrIds = []
+        $array.forEach(function (currentValue, index, array) {
+          arrIds.push(this.getRowIdFromElement(currentValue))
+        })
+        return arrIds
+      },
+      getRowIdFromElement ($el) {
+        return $el.id.split('delete')[1]
+      },
+      getCheckedBoxes () {
+        var inputs = document.getElementsByTagName('input')
+        var checkboxesChecked = []
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].checked) {
+            checkboxesChecked.push(inputs[i])
+          }
+        }
+        return checkboxesChecked.length > 0 ? checkboxesChecked : null
+      },
+      deleteRowByCheckboxId (CheckboxId) {
+        var checkbox = document.getElementById('fileTable')
+        checkbox.deleteRow(1)
+        /*
+        var row = checkbox.parentNode.parentNode
+        var table = row.parentNode
+        while (table && table.tagName !== 'TABLE') {
+          table = table.parentNode
+        }
+        if (!table) {
+          return
+        }
+        table.deleteRow(row.rowIndex)
+        */
       },
       checkFileType (file) {
         if (file.type.includes('image/')) {
@@ -56,26 +118,14 @@
         }
       },
       tableCreate (name, size) {
-        this.rowId++
-        // var thisRowID = this.rowId
         var table = document.getElementById('fileTable')
         var row = table.insertRow(0)
         var cell0 = row.insertCell(0)
         var cell1 = row.insertCell(1)
         var cell2 = row.insertCell(2)
-        var btn = document.createElement('input')
-        btn.type = 'button'
-        btn.className = 'btn'
-        btn.onclick = function () {
-          alert('Baba')
-        }
-        // cell0.innerHTML = '<input type="button" value="x"></input>'
         cell0.innerHTML = '<button class=\'btn\' v-on:click =this.buttonClicked()></button>'
         cell1.innerHTML = name
         cell2.innerHTML = size
-      },
-      buttonClicked () {
-        console.log('Worked')
       },
       tableReset () {
         this.obj = []
