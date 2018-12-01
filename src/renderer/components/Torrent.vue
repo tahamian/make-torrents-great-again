@@ -6,7 +6,7 @@
     </div>
 
     <!-- Take up space if there is no image -->
-    <div v-if="!torrent.image" class="torrent-iamge missing-image"></div>
+    <div v-if="!torrent.image" class="torrent-image missing-image"></div>
 
     <div class="torrent-name">{{ torrent.name }}</div>
 
