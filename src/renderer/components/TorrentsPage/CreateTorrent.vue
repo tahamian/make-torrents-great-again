@@ -7,8 +7,16 @@
        <p>Drag your files here or click to browse</p>
     </div>
   </div>
+  <div id="table">
+    
+    
+    
+    
+  
+  
+  </div>
   <div id="createTorrent">
-    <button v-on:click="handleFileUpload()">Create Torrent</button>
+    <button v-on:click="createTorrentFile()">Create Torrent</button>
   </div>
   </div>
 </template>
@@ -16,6 +24,7 @@
   export default {
     data () {
       return {
+        obj: [],
         store: [],
         write: []
       }
@@ -24,12 +33,10 @@
       parse () {
         var input = this.$refs.file.files
         console.log(input)
-        var obj = this.write
         for (var i = 0; i < input.length; i++) {
-          obj.push({'name': input[i].name, 'path': input[i].path, 'category': this.checkFileType(input[i])})
+          this.obj.push({'name': input[i].name, 'path': input[i].path, 'category': this.checkFileType(input[i])})
         }
-        this.write = JSON.stringify(obj)
-        console.log(this.write)
+        console.log(this.obj)
       },
       checkFileType (file) {
         if (file.type.includes('image/')) {
@@ -52,12 +59,14 @@
       },
       handleFileUpload () {
         this.parse()
-        this.createTorrentFile(this.write)
+        // this.createTorrentFile(this.write)
       },
-      createTorrentFile (data) {
+      createTorrentFile () {
+        this.write = JSON.stringify(this.obj)
+        console.log(this.write)
         const fs = require('fs')
         try {
-          fs.writeFileSync('torren.json', data, 'utf-8')
+          fs.writeFileSync('torren.json', this.write, 'utf-8')
           console.log('File Written')
         } catch (e) {
           alert('Failed to save the file !')
