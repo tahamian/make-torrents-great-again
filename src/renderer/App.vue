@@ -20,7 +20,7 @@
           Add a Torrent
         </div>
 
-        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly" v-on:click="clickedPage('magnet')">
           <img src="static/magnet.svg">
           Add a magnet link
         </div>

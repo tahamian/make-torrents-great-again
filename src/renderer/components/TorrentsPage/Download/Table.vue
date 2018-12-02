@@ -59,8 +59,8 @@ let y = []
 <style scoped>
 .table{
     padding: 20px;
-    height: 250px;
-    table-layout: fixed;
+    /* height: 250px; */
+    /* table-layout: fixed; */
 }
 .container table{
   width: 100%;
@@ -72,7 +72,7 @@ let y = []
 }
 .container tbody {
   /* overflow: auto; */
-  height: 100px;
+  /* height: 100px; */
  
 
 }

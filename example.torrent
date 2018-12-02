@@ -1,0 +1,6 @@
+{
+  name: 'input[i].name', 
+  path: 'input[i].path', 
+  check: 'true', 
+  category: 'this.checkFileType(input[i])' 
+}

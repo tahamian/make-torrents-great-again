@@ -1,35 +1,55 @@
 <template>
   <div>
     <header>
+  
       <div class="create">
-        Add Torrent by Torrent File
+        Create Torrent From Magnet Link
         </div>
     </header>
-  <div id="upload" style="padding:50px">
-    <h4>Open Torrent File:</h4>
-    <div class="dropbox">
-       <input type="file" multiple id="file" 
-       accept=".torrent" ref="file" class="input-file" 
-       v-on:change="handleFileUpload()">
-       <p>Drag your files here or click to browse</p>
-    </div>
+    
+      <b-card>  
+    <div role="group">
+    <label for="inputLive">Magnet Link:</label>
+    <b-form-input id="inputLive"
+                  v-model.trim="name"
+                  type="text"
+                  :state="nameState"
+                  aria-describedby="inputLiveHelp inputLiveFeedback"
+                  placeholder="Enter Magnet Link">
+                  </b-form-input>
+    <b-form-invalid-feedback id="inputLiveFeedback">
+      Enter Valid Magnet link
+    </b-form-invalid-feedback>
+  
+    <div>
+      <br>
+  <b-button ref="button" disabled variant="success"   v-if=" ! nameState"
+  >Download</b-button>
+
+  <b-button ref="button" variant="success"  v-if=" nameState"
+  v-on:click="handleFileUpload">Download</b-button>
+</div>
   </div>
- 
- 
- 
+  </b-card>
+  
+  <div class="createTorrent">
+
 
     
     
-      <b-container class="bv-example-row">
+  
+  
+  <b-container class="bv-example-row">
     <b-row class="text-center">
         <b-col></b-col>
         <b-col cols="12">
+
           <b-card title="Added Files" v-if="obj.length > 1">
-            <custom-table :down ="obj" > </custom-table>
-           
+  <custom-table :down ="obj" > </custom-table>
           
-    <b-btn  v-on:click="createTorrentFile()" v-b-modal.modalPopover>Download Files</b-btn>
           
+          
+          <b-btn  v-on:click="createTorrentFile()" v-b-modal.modalPopover v-if="obj.length > 1">Download Files</b-btn>
  
   </b-card>
 
@@ -40,14 +60,10 @@
 </b-container>
     
     
-    
-    
-    
-    
-    
     <b-modal id="modalPopover" title="Modal with Popover" hide-header ok-only>
     <p>Finised Creating Torrent File.</p>
     </b-modal>
+  </div>
 <div>
  
 </div>
@@ -66,24 +82,19 @@
   
   export default {
     components: {customTable},
+    computed: {
+    nameState () {
+      return this.name.length > 2 ? true : false
+    }
+    },
     data () {
       return {
         obj: [],
-        write: []
+        write: [],
+        name: ''
       }
     },
     methods: {
-      parse () {
-        // console.log(input)
-        // for (var i = 0; i < input.length; i++) {
-        //     this.obj.push({
-        //      'name': input[i].name, 
-        //      'path': input[i].path, 
-        //      'check': true, 
-        //      'category': this.checkFileType(input[i])
-        //      },)
-        // }
-      },
       checkFileType (file) {
         if (file.type.includes('image/')) {
           return 'Etc.'
@@ -104,18 +115,9 @@
         }
       },
       handleFileUpload () {
-        var input = this.$refs.file.files
-        // // console.log(input[0].name)
-        // // console.log(__dirname)
-        // console.log('/' +  input[0].name)
-        // fs.readFile('/' +  input[0].name, (err, data) => {
-        //   if(err){
-        //     console.log(err)
-        //   }
-        //   console.log(data)
-        // })
-        if(input){
-          this.obj.push({
+        // this.parse()
+        // this.createTorrentFile(this.write)
+        this.obj.push({
             name: 'Deadpool 4K', 
             path: 'Downloads', 
             check: 'true', 
@@ -128,7 +130,6 @@
             category: 'Books' 
         }
         )
-        }
       },
       createTorrentFile () {
         var data = []
