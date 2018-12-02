@@ -22,15 +22,27 @@
     <div class="page-body">
       <router-view></router-view>
     </div>
-    
+    <div class="settings">
+    <settings v-bind:show="showsettings"></settings>
+    {{this.$store.state}}
+    </div>
   </div>
 </template>
 
 <script>
 import './common.css'
+import Settings from './components/MainPage/Settings'
 
 export default {
   name: 'make-torrents-great-again',
+  components: {
+    Settings
+  },
+  data () {
+    return {
+      showsettings: false
+    }
+  },
   methods: {
     open (link) {
       this.$electron.shell.openExternal(link)
@@ -46,6 +58,11 @@ export default {
     },
     iconHoverOff (event) {
       this.remClass(event.currentTarget, 'icon-highlighted')
+    },
+    launchSettings () {
+      // this.$router.push({name: 'settings'})
+      console.log('launch settings modal')
+      this.showsettings = !this.showsettings
     }
   }
 }
