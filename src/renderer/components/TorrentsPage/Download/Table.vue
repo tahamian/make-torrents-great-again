@@ -1,19 +1,22 @@
 <template>
  <div class = "table"> 
 <table class="container">
+    <thead>
       <tr>
         <th> </th>
         <th>File</th> 
         <th>Category</th>
         <th>Priority</th>
       </tr>
+    </thead>
+    <tbody>
       <tr v-for="item in down">
         <td>
           <b-form-checkbox v-model="item.check">
         </b-form-checkbox>
         </td>
         
-        <td> {{item.filename}}  </td>
+        <td> {{item.name}}  </td>
         <td>
           <b-form-select v-model="item.category" class="mb-3" >
           <option v-for="category in categories">
@@ -29,8 +32,8 @@
           </b-form-select>
         </td> 
       </tr>
+    </tbody>
       </table>
-      {{this.down}}
 
   </div>
 </template>
@@ -57,14 +60,23 @@ let y = []
 .table{
     padding: 20px;
     height: 250px;
-    overflow: auto;
+    
 }
 .container {
     width: 80%;
     height: 10px;
 }
-.fixed_header{
-    width: 400px;
+.container tbody {
+  
+  width: 100%;
+  overflow: auto;
+  height: 100px;
+  width: 100%;
+  overflow: auto;
+  height: 100px;
+
+}
+.fixed_header {
     table-layout: fixed;
     border-collapse: collapse;
 }
@@ -79,10 +91,7 @@ let y = []
    display: block;
 }
 
-.fixed_header thead {
-  background: black;
-  color:#fff;
-}
+
 
 .fixed_header th, .fixed_header td {
   padding: 5px;

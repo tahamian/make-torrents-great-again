@@ -27,6 +27,8 @@
   import './../../common.css'
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
+  import Torrent from './../Torrent.vue'
+  import { mapActions } from 'vuex'
   export default {
     components: {customTable},
     data () {
@@ -37,13 +39,31 @@
     },
     methods: {
       parse () {
+        
         var input = this.$refs.file.files
         console.log(input)
-        this.rowId = input.length
         for (var i = 0; i < input.length; i++) {
-          this.obj.push({'filename': input[i].name, 'path': input[i].path, 'check': true, 'category': this.checkFileType(input[i])},)
+            this.obj.push({
+             'name': input[i].name, 
+             'path': input[i].path, 
+             'check': true, 
+             'category': this.checkFileType(input[i])
+             },)
+
+           var current = {
+            category: this.checkFileType(input[i]),
+            image: "",
+            name: input[i].name,
+            optionsVisible: false,
+            downloadSpeed : 0,
+            uploadSpeed:  0,
+            peers: 0,
+            optionsVisible: false
         }
-        console.log(this.obj)
+        this.addTorrent(current)
+        }
+        console.log(this.$store.state.Torrents)
+ 
       },
       checkFileType (file) {
         if (file.type.includes('image/')) {
@@ -76,6 +96,8 @@
           }
         }
         this.write = JSON.stringify(data)
+        
+        console.log(this.$store.state.Torrents)
         const fs = require('fs')
         try {
           fs.writeFileSync('torrent.json', this.write, 'utf-8')
@@ -83,7 +105,10 @@
         } catch (e) {
           alert('Failed to save the file !')
         }
-      }
+      },
+      ...mapActions([
+      'addTorrent'  // mapped the function
+    ])
     }
   }
 </script>
