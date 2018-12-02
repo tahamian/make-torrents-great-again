@@ -20,7 +20,7 @@
           Add a Torrent
         </div>
 
-        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly">
+        <div @mouseover="iconHoverOn($event)" @mouseleave="iconHoverOff($event)" class="flex-col space-evenly" v-on:click="clickedPage('magnet-link')">
           <img src="static/magnet.svg">
           Add a magnet link
         </div>
@@ -32,7 +32,7 @@
       </nav>
     </div>
     
-    <div class="page-body">
+    <div class="page-body" style="overflow: scroll">
       <router-view></router-view>
     </div>
     <StatsFooter class="stats-footer"></StatsFooter>
@@ -162,4 +162,5 @@ nav img
   right: 0px;
   left: 150px;
 }
+
 </style>
