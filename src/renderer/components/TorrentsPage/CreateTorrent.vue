@@ -7,23 +7,31 @@
        <p>Drag your files here or click to browse</p>
     </div>
   </div>
-  <div id="table" align = "center" class = "tcontainer" overflow-y>
-    <table id = "fileTable" align = "center" class = "table" style="width:100%">
-</table>
+  <custom-table :down ="obj"> </custom-table>
+  <div class="createTorrent" align = "center">
+    <b-btn  v-on:click="createTorrentFile()" v-b-modal.modalPopover>Create Torrent File</b-btn>
+    <b-modal id="modalPopover" title="Modal with Popover" hide-header ok-only>
+    <p>Finised Creating Torrent File.</p>
+    </b-modal>
   </div>
-  <div id="createTorrent" align = "center">
-    <!--<button  v-on:click="createTorrentFile()">Create Torrent</button>-->
-    <button  v-on:click="deleteMoreRows()">Unselect</button>
-  </div>
+<div>
+ 
+</div>
+
+
+
   </div>
 </template>
 <script>
+  import customTable from './Download/Table'
+  import './../../common.css'
+  import 'bootstrap/dist/css/bootstrap.css'
+  import 'bootstrap-vue/dist/bootstrap-vue.css'
   export default {
+    components: {customTable},
     data () {
       return {
         obj: [],
-        store: [],
-        rowId: -1,
         write: []
       }
     },
@@ -33,117 +41,41 @@
         console.log(input)
         this.rowId = input.length
         for (var i = 0; i < input.length; i++) {
-          this.obj.push({'name': input[i].name, 'path': input[i].path, 'category': this.checkFileType(input[i])})
-          this.addRow(input[i].name, input[i].path)
+          this.obj.push({'filename': input[i].name, 'path': input[i].path, 'check': true, 'category': this.checkFileType(input[i])},)
         }
         console.log(this.obj)
       },
-      addRow (name, size) {
-        var table = document.getElementById('fileTable')
-        var row = table.insertRow(0)
-        var cell0 = row.insertCell(0)
-        var cell1 = row.insertCell(1)
-        var cell2 = row.insertCell(2)
-        cell0.innerHTML = '<input type="checkbox" id="' + this.getRowId() + '">'
-        cell1.innerHTML = name
-        cell2.innerHTML = size
-        console.log('File Name: ' + name + ' RowID: ' + this.rowId)
-      },
-      getRowId () {
-        this.rowId -= 1
-        return this.rowId
-      },
-      deleteMoreRows () {
-        var table = document.getElementById('fileTable')
-        // var rowCount = table.rows.length
-        var selectedRows = this.getCheckedBoxes()
-        selectedRows.forEach(function (currentValue) {
-          // this.deleteRowByCheckboxId(currentValue.id)
-          console.log('Deleting ' + currentValue.id)
-          table.deleteRow(currentValue.id)
-        })
-      },
-      getRowIdsFromElements ($array) {
-        var arrIds = []
-        $array.forEach(function (currentValue, index, array) {
-          arrIds.push(this.getRowIdFromElement(currentValue))
-        })
-        return arrIds
-      },
-      getRowIdFromElement ($el) {
-        return $el.id.split('delete')[1]
-      },
-      getCheckedBoxes () {
-        var inputs = document.getElementsByTagName('input')
-        var checkboxesChecked = []
-        for (var i = 0; i < inputs.length; i++) {
-          if (inputs[i].checked) {
-            checkboxesChecked.push(inputs[i])
-          }
-        }
-        return checkboxesChecked.length > 0 ? checkboxesChecked : null
-      },
-      deleteRowByCheckboxId (CheckboxId) {
-        var checkbox = document.getElementById('fileTable')
-        checkbox.deleteRow(1)
-        /*
-        var row = checkbox.parentNode.parentNode
-        var table = row.parentNode
-        while (table && table.tagName !== 'TABLE') {
-          table = table.parentNode
-        }
-        if (!table) {
-          return
-        }
-        table.deleteRow(row.rowIndex)
-        */
-      },
       checkFileType (file) {
         if (file.type.includes('image/')) {
-          return 'other'
+          return 'Etc.'
         } else if (file.type.includes('audio/')) {
-          return 'music'
+          return 'Music'
         } else if (file.type.includes('video/')) {
           if (file.size < 4000000000) {
-            return 'tv'
+            return 'T.V.'
           } else {
-            return 'movie'
+            return 'Movies'
           }
         } else if (file.type.includes('application/pdf') || file.type.includes('application/txt') || file.type.includes('application/docx')) {
-          return 'book'
+          return 'Books'
         } else if (file.type.includes('application/')) {
-          return 'app'
+          return 'Applications'
         } else {
-          return 'other'
+          return 'Etc/'
         }
-      },
-      tableCreate (name, size) {
-        var table = document.getElementById('fileTable')
-        var row = table.insertRow(0)
-        var cell0 = row.insertCell(0)
-        var cell1 = row.insertCell(1)
-        var cell2 = row.insertCell(2)
-        cell0.innerHTML = '<button class=\'btn\' v-on:click =this.buttonClicked()></button>'
-        cell1.innerHTML = name
-        cell2.innerHTML = size
-      },
-      tableReset () {
-        this.obj = []
-        this.write = []
-        var Table = document.getElementById('fileTable')
-        Table.innerHTML = ''
       },
       handleFileUpload () {
         this.parse()
         // this.createTorrentFile(this.write)
       },
-      deleteRow (rowid) {
-        var row = document.getElementById(rowid)
-        row.parentNode.removeChild(row)
-      },
       createTorrentFile () {
-        this.write = JSON.stringify(this.obj)
-        console.log(this.write)
+        var data = []
+        for (var i = 0; i < this.obj.length; i++) {
+          if(this.obj[i].check == true){
+            data.push({'filename': this.obj[i].filename, 'path': this.obj[i].path, 'category': this.obj[i].category})
+          }
+        }
+        this.write = JSON.stringify(data)
         const fs = require('fs')
         try {
           fs.writeFileSync('torrent.json', this.write, 'utf-8')
@@ -151,7 +83,6 @@
         } catch (e) {
           alert('Failed to save the file !')
         }
-        this.tableReset()
       }
     }
   }
@@ -167,15 +98,15 @@
     position: relative;
     cursor: pointer;
   }
+  .createTorrent {
+    padding: 50px
+  }
   .tcontainer{
     position: relative;
     padding: 10px 10px;
     overflow: auto;
     max-height: 25vh;
     max-width: 100vh;
-  }
-  .table {
-    padding: 100px;
   }
   .smallB {
    padding-top: 2px;
