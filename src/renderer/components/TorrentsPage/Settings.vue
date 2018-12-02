@@ -6,7 +6,7 @@
       </div>
     </header>
     <div>
-{{this.$store.state}}
+<!-- {{this.$store.state}} -->
 
     <b-card title="User interface Settings">
         <label>Change Theme </label>
@@ -37,12 +37,12 @@
     <b-row>
         <b-col>
            <b-input-group  prepend="Max Down limit" append="MBp/s">
-    <b-form-input min="0" type="number" v-on:change="updateDown"></b-form-input>
+    <b-form-input min="0" type="number" v-on:change="updateDown" v-model="down"></b-form-input>
   </b-input-group>
         </b-col>
         <b-col>
            <b-input-group  prepend="Max Up limit" append="MBp/s">
-    <b-form-input min="0" type="number" v-on:change="updateUp"></b-form-input>
+    <b-form-input min="0" type="number" v-on:change="updateUp" v-model="up"></b-form-input>
   </b-input-group>
         </b-col>
     </b-row>
@@ -119,6 +119,7 @@ import moment from 'moment'
 import * as d3 from 'd3'
 import DatePicker from 'vue2-datepicker'
 import translate from 'translate'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'settings',
@@ -126,13 +127,13 @@ export default {
   components: {DatePicker},
   mounted: function () {
   this.$nextTick(function () {
-   this.genGraph()
-    })
+    this.genGraph()
+  })
   },
   watch: {
     selectedTheme: function(currentValue) { this.changeTheme() },
-    selectedFont: function(currentValue) {this.changeFont()},
-    selectedLanguage: function(currentValue) {this.changeLang()},
+    selectedFont: function(currentValue) { this.changeFont() },
+    selectedLanguage: function(currentValue) { this.changeLang() },
   },
   data () {
     let now = new Date
@@ -159,16 +160,26 @@ export default {
       selectedTheme: this.$store.getters.getThemes,
       selectedFont: this.$store.getters.getFonts,
       selectedLanguage: this.$store.getters.getLanguages,
-      maxUsage: null,
+      maxUsage: this.$store.getters.getUsage,
       languages: ['English', 'French', 'Spanish'],
       fonts: ['Arial','Courier','Geneva','Georgia','Helvetica','Roboto','Times New Roman','Verdana'],
       themes: ['Light', 'Dark', 'Blue'],
+      up: this.$store.getters.getUp,
+      down: this.$store.getters.getDown
     }
   },
   created () {
     this.genGraph()
   },
   methods: {
+    ...mapActions([
+      'change_lang',
+      'change_font',
+      'change_theme',
+      'change_down',
+      'change_up',
+      'change_max'
+      ]),
     onChange(range) {
       this.range = range;
     },
@@ -266,10 +277,12 @@ export default {
        node.style.color = color
       }
     })
-    //change state in actions
+    this.change_theme({value: this.selectedTheme})
     },
-    changeFont (){
+    changeFont () {
     let fontfam = ''
+    this.change_font({value: this.selectedFont})
+
     switch (this.fonts.indexOf(this.selectedFont)) {
       case 0:
       fontfam = 'Arial, Helvetica, sans-serif'
@@ -301,6 +314,8 @@ export default {
        node.style.fontFamily = fontfam
       }
       //change state in actions
+      // console.log(this.selectedFont)
+
     })
 
     },
@@ -309,7 +324,7 @@ export default {
     },
     changeLang () {
       //change state in action
-
+      this.change_lang({lang : this.selectedLanguage})
       // let lang = ''
       // if (this.selectedLanguage == 'English'){lang = 'en'}
       // if (this.selectedLanguage == 'French'){lang = 'fr'}
@@ -324,14 +339,19 @@ export default {
       // }
     // })
     },
-    updateDonw() {
+    updateDown() {
       //change state using actions
+    this.change_down({value: this.down})
     },
     updateUp() {
       //change state using actions
+    this.change_up({value: this.up})
+
     },
     updateMax() {
       //change state using acitons
+    this.change_max({value: this.maxUsage})
+
     }
   }
 }

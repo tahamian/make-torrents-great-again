@@ -2,18 +2,14 @@
   <div>
     Enter Magnet Link
     <input name="enter magnet link" />
-    {{fonts}}
-    <button v-on:click="getfonts">H</button>
-    <button v-on:click="changefonts"> Change Font </button>
-  </div>
+    </div>
 </template>
 
 <script>
-import fontList from 'font-list'
+// import fontList from 'font-list'
   export default {
     data () {
       return {
-        fonts: 'fontManager.getAvailableFontsSync()'
       }
     },
     methods: {
