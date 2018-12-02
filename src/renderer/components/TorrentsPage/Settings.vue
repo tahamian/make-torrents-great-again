@@ -4,26 +4,27 @@
       <div class="settingheader">
       Settings
       </div>
-
     </header>
     <div>
+{{this.$store.state}}
+
     <b-card title="User interface Settings">
         <label>Change Theme </label>
-        <b-form-select v-model="selectedTheme" v-on:change="changeTheme">
+        <b-form-select v-model="selectedTheme">
         <option v-for="item in themes">
         {{item}}
         </option>
         </b-form-select>
 
         <label>Change Font</label>
-        <b-form-select v-model="selectedFont" v-on:change="changeFont">
+        <b-form-select v-model="selectedFont" >
         <option v-for="item in fonts">
         {{item}}
         </option>
         </b-form-select>
 
         <label>Change Language</label>
-        <b-form-select v-model="selectedLanguage" v-on:change="changeLang">
+        <b-form-select v-model="selectedLanguage">
         <option v-for="item in languages">
         {{item}}
         </option>
@@ -36,12 +37,12 @@
     <b-row>
         <b-col>
            <b-input-group  prepend="Max Down limit" append="MBp/s">
-    <b-form-input min="0" type="number"></b-form-input>
+    <b-form-input min="0" type="number" v-on:change="updateDown"></b-form-input>
   </b-input-group>
         </b-col>
         <b-col>
            <b-input-group  prepend="Max Up limit" append="MBp/s">
-    <b-form-input min="0" type="number"></b-form-input>
+    <b-form-input min="0" type="number" v-on:change="updateUp"></b-form-input>
   </b-input-group>
         </b-col>
     </b-row>
@@ -89,7 +90,7 @@ Total usage in period {{usage}} GB
 
 
   <b-input-group  prepend="Max Usage Limit" append="GB">
-    <b-form-input min="0" type="number" v-model="maxUsage"></b-form-input>
+    <b-form-input min="0" type="number" v-model="maxUsage" v-on:change="updateMax"></b-form-input>
   </b-input-group>
 
 
@@ -132,10 +133,6 @@ export default {
     selectedTheme: function(currentValue) { this.changeTheme() },
     selectedFont: function(currentValue) {this.changeFont()},
     selectedLanguage: function(currentValue) {this.changeLang()},
-    $route (to, from){
-        // this.show = false;
-        genGraph()
-    }
   },
   data () {
     let now = new Date
@@ -159,12 +156,12 @@ export default {
         step: '00:30',
         end: '23:30'
       },
-      selectedTheme: 'Light',
-      selectedFont: 'Roboto',
-      selectedLanguage: 'English',
+      selectedTheme: this.$store.getters.getThemes,
+      selectedFont: this.$store.getters.getFonts,
+      selectedLanguage: this.$store.getters.getLanguages,
       maxUsage: null,
       languages: ['English', 'French', 'Spanish'],
-      fonts: ['Roboto', 'Georgia','Times New Roman', 'Arial', 'Helvetica','Courier','Verdana','Geneva'],
+      fonts: ['Arial','Courier','Geneva','Georgia','Helvetica','Roboto','Times New Roman','Verdana'],
       themes: ['Light', 'Dark', 'Blue'],
     }
   },
@@ -237,7 +234,7 @@ export default {
     .text("Data Used (GB)")
 
     this.usage = parseFloat(data[data.length - 1 ].value).toPrecision(4)
-
+    //change state in actions
     
     },
     genData () {
@@ -257,12 +254,10 @@ export default {
     if(this.selectedTheme == 'Blue'){
       back = '#0c87eb'
       color = '#fff'
-      // console.log('blue')
     }
     else if (this.selectedTheme == 'Dark'){
       back = '#575757'
       color = '#fff'
-      // console.log('Dark')
     }
     var all = document.getElementsByTagName("*")
     document.querySelectorAll('*').forEach(function(node) {
@@ -271,11 +266,11 @@ export default {
        node.style.color = color
       }
     })
-
+    //change state in actions
     },
     changeFont (){
     let fontfam = ''
-    switch (this.$store.getters.getFonts.indexOf(this.selectedFont)) {
+    switch (this.fonts.indexOf(this.selectedFont)) {
       case 0:
       fontfam = 'Arial, Helvetica, sans-serif'
       break
@@ -305,12 +300,16 @@ export default {
     if (node.style != undefined ){
        node.style.fontFamily = fontfam
       }
+      //change state in actions
     })
+
     },
     formatDate (today) {
       return moment(today).format("MMM Do YYYY")
     },
     changeLang () {
+      //change state in action
+
       // let lang = ''
       // if (this.selectedLanguage == 'English'){lang = 'en'}
       // if (this.selectedLanguage == 'French'){lang = 'fr'}
@@ -324,6 +323,15 @@ export default {
       // });
       // }
     // })
+    },
+    updateDonw() {
+      //change state using actions
+    },
+    updateUp() {
+      //change state using actions
+    },
+    updateMax() {
+      //change state using acitons
     }
   }
 }
