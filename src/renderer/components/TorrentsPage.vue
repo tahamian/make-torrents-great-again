@@ -19,7 +19,7 @@
       <input v-model="searchQuery" type="text" size="40">
     </div>
   </header>
-  <content>
+  <content style="overflow-x: auto;">
     <div
       v-for="torrent in listTorrents"
       v-bind:key="torrent.name">
