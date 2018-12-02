@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <header>
+  <div style="overflow:auto">
+    <header >
       <div class="settingheader">
       Settings
       </div>
     </header>
     <div>
-<!-- {{this.$store.state}} -->
 
     <b-card title="User interface Settings">
         <label>Change Theme </label>
@@ -380,12 +379,12 @@ export default {
   font-size: 20px;
   opacity: 0.7;
   cursor: pointer;
-  /* margin-top: 40px; */
   height: 100%;
   display: flex;
   align-items: center;
   font-size: 1.5em;
   color: white;
+  /* position: fixed; */
 }
 
 </style>
