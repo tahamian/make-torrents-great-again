@@ -5,13 +5,30 @@
        <input type="file" id="file" ref="file" class="input-file" v-on:change="handleFileUpload()">
        <p>Drag your files here or click to browse</p>
     </div>
+  <custom-table :down="down">
+    </custom-table>
   </div>
 </template>
 <script>
+import customTable from './Download/Table'
   export default {
+    components: {customTable},
     data () {
       return {
         file: '',
+          down: [{
+            check: true,
+            filename: 'im a gordo',
+            category: 'All'
+          },
+          {
+            check: true,
+            filename: 'im a idiot',
+            category: 'All'
+          }
+        ],
+        categories: ['stupid', 'studpid'],
+        prior: ['default', 'high', 'low'],
         stInital: 0,
         stSaving: 1,
         stSucess: 2,

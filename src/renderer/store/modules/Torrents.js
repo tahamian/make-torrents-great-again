@@ -19,12 +19,19 @@ const mutations = {
     state.filter(current => {
       return current.name === torrent.name
     })[0].optionsVisible = option
+  },
+  ADD_TORRENT (state, payload) {
+    state.push(payload)
+   
   }
 }
 
 const actions = {
   toggleTorrentOptionsVisible (state, payload) {
     state.commit('TOGGLE_TORRENT_OPTIONS_VISIBLE', payload)
+  },
+  addTorrent(state, payload){
+    state.commit('ADD_TORRENT',payload)
   }
 }
 

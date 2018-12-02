@@ -36,23 +36,6 @@
       "name": "Taxi Driver",
       "category": "Movies",
       "image": "Taxi Driver.png"
-    },
-    {
-      "name": "JJ",
-      "category": "Music",
-      "downloadCap": 1000
-    },
-    {
-      "name": "Blah",
-      "category": "Books",
-      "image": "",
-      "uploadCap": 500,
-      "downloadCap": 500
-    },
-    {
-      "name": "Blah II",
-      "category": "Movies",
-      "image": ""
     }
   ]
 }
