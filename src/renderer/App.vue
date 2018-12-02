@@ -32,7 +32,7 @@
       </nav>
     </div>
     
-    <div class="page-body">
+    <div class="page-body" style="overflow:scroll">
       <router-view></router-view>
     </div>
     <StatsFooter class="stats-footer"></StatsFooter>

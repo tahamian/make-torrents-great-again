@@ -60,7 +60,7 @@ let y = []
 .table{
     padding: 20px;
     height: 250px;
-    
+    table-layout: fixed;
 }
 .container table{
   width: 100%;
@@ -71,9 +71,7 @@ let y = []
     
 }
 .container tbody {
-  
-  
-  overflow: auto;
+  /* overflow: auto; */
   height: 100px;
  
 

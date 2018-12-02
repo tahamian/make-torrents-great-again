@@ -1,5 +1,10 @@
 <template>
   <div>
+    <header>
+      <div class="create">
+        Create Torrent
+        </div>
+    </header>
   <div id="upload" style="padding:50px">
     <h4>Upload Files:</h4>
     <div class="dropbox">
@@ -7,7 +12,9 @@
        <p>Drag your files here or click to browse</p>
     </div>
   </div>
-  <custom-table :down ="obj"> </custom-table>
+  <b-card title="Added Files">
+  <custom-table :down ="obj" > </custom-table>
+  </b-card>
   <div class="createTorrent" align = "center">
     <b-btn  v-on:click="createTorrentFile()" v-b-modal.modalPopover>Create Torrent File</b-btn>
     <b-modal id="modalPopover" title="Modal with Popover" hide-header ok-only>
@@ -150,5 +157,20 @@
   .dropbox:hover {
     background: lightblue; /* when mouse over to the drop zone, change color */
   }
+  .create
+{
+  height: 100%;
+  font-size: 20px;
+  opacity: 0.7;
+  cursor: pointer;
+  /* margin-top: 40px; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  color: white;
+}
+
+
 </style>
 
