@@ -123,6 +123,11 @@ export default {
   name: 'settings',
   props: ['show'],
   components: {DatePicker},
+  mounted: function () {
+  this.$nextTick(function () {
+   this.genGraph()
+    })
+  },
   watch: {
     selectedTheme: function(currentValue) { this.changeTheme() },
     selectedFont: function(currentValue) {this.changeFont()},
