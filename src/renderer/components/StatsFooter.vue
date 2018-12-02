@@ -11,7 +11,7 @@
   <div class="global-speed-cap">
     <div v-if="downloadCapActive">
       Download speed limited to:
-      {{ this.$store.state.SpeedCaps.download }}
+      {{ this.$store.getters.getDown }} MBp/s
     </div>
   </div>
 
@@ -19,7 +19,7 @@
   <div class="global-speed-cap">
     <div v-if="uploadCapActive">
       Upload speed limited to:
-      {{ this.$store.state.SpeedCaps.upload }}
+      {{ this.$store.getters.getUp}} MBp/s
     </div>
   </div>
   
@@ -33,10 +33,10 @@ export default {
   name: 'StatsFooter',
   computed: {
     downloadCapActive () {
-      return this.$store.state.SpeedCaps.download !== null
+      return this.$store.getters.getDown !== null
     },
     uploadCapActive () {
-      return this.$store.state.SpeedCaps.upload !== null
+      return this.$store.getters.getUp !== null
     }
   }
 }

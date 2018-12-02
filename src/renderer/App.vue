@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="flex-row">
+  <div id="app" style="justify-content: space-between; max-height: 100vh;" class="flex-row">
     <div class="side-bar flex-col space-between">
       <div
         class="main-logo box-shadow flex-row center-all"
@@ -32,10 +32,11 @@
       </nav>
     </div>
     
-    <div class="page-body" style="overflow:scroll">
-      <router-view></router-view>
+    <div style="display: block; width: 100%; max-height: 100%;">
+      <router-view style="height: 95%;"></router-view>
+      <StatsFooter style="height: 5%; border-top: 1px solid #c0c0c0;"></StatsFooter>
     </div>
-    <StatsFooter class="stats-footer"></StatsFooter>
+
   </div>
 </template>
 
@@ -84,12 +85,6 @@ body
   overflow: hidden;
   margin: 0px;
   font-family: 'Roboto';
-}
-
-.page-body
-{
-  width: 100%;
-  height: 100vh;
 }
 
 .side-bar
@@ -162,4 +157,5 @@ nav img
   right: 0px;
   left: 150px;
 }
+
 </style>

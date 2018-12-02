@@ -31,6 +31,11 @@ export default new Router({
       component: require('@/components/TorrentsPage/Settings').default
     },
     {
+      path: '/TorrentsPage/MagnetLink',
+      name: 'magnet-link',
+      component: require('@/components/TorrentsPage/MagnetLink').default
+    },
+    {
       path: '*',
       redirect: '/'
     }
