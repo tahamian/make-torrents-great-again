@@ -62,18 +62,20 @@ let y = []
     height: 250px;
     
 }
-.container {
-    width: 80%;
-    height: 10px;
+.container table{
+  width: 100%;
+}
+.container thead, tbody{
+  display:block;
+   
+    
 }
 .container tbody {
   
-  width: 100%;
+  
   overflow: auto;
   height: 100px;
-  width: 100%;
-  overflow: auto;
-  height: 100px;
+ 
 
 }
 .fixed_header {

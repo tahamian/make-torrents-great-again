@@ -49,21 +49,7 @@
              'check': true, 
              'category': this.checkFileType(input[i])
              },)
-
-           var current = {
-            category: this.checkFileType(input[i]),
-            image: "",
-            name: input[i].name,
-            optionsVisible: false,
-            downloadSpeed : 0,
-            uploadSpeed:  0,
-            peers: 0,
-            optionsVisible: false
         }
-        this.addTorrent(current)
-        }
-        console.log(this.$store.state.Torrents)
- 
       },
       checkFileType (file) {
         if (file.type.includes('image/')) {
@@ -92,7 +78,18 @@
         var data = []
         for (var i = 0; i < this.obj.length; i++) {
           if(this.obj[i].check == true){
-            data.push({'filename': this.obj[i].filename, 'path': this.obj[i].path, 'category': this.obj[i].category})
+            data.push({'filename': this.obj[i].name, 'path': this.obj[i].path, 'category': this.obj[i].category})
+            var current = {
+            category: this.obj[i].category,
+            image: "",
+            name: this.obj[i].name,
+            optionsVisible: false,
+            downloadSpeed : 0,
+            uploadSpeed:  0,
+            peers: 0,
+            optionsVisible: false
+          }
+          this.addTorrent(current)
           }
         }
         this.write = JSON.stringify(data)
