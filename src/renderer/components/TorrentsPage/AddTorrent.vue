@@ -115,13 +115,13 @@ export default {
           {
             name: "Deadpool 4K",
             path: "Downloads",
-            check: "true",
+            check: true,
             category: "Movies"
           },
           {
             name: "How to be Smart",
             path: "Downloads",
-            check: "true",
+            check: true,
             category: "Books"
           }
         );
