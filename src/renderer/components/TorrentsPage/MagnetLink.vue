@@ -63,7 +63,7 @@
       </b-container>
 
       <b-modal id="modalPopover" title="Modal with Popover" hide-header ok-only>
-        <p>Finised Creating Torrent File.</p>
+        <p>Finished Creating Torrent File.</p>
       </b-modal>
     </div>
     <div></div>

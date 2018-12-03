@@ -22,6 +22,12 @@
     </div>
   </header>
   <content style="overflow-x: auto;">
+    <div style="height: 100%; width: 100%;" class="flex-col center-all" v-if="listTorrents.length === 0">
+      <div v-if="listTorrents.length === 0">
+        <h1 style="font-size: 2em; padding-top: 50px;">Nothing Here 😞 </h1>
+        Change your search or category filters to see more torrents. You can add one by clicking 'Create a Torrent', 'Add a Torrent', or 'Add a Magnet Link'
+      </div>
+    </div>
     <div
       v-for="torrent in listTorrents"
       v-bind:key="torrent.name">

@@ -35,7 +35,25 @@
     </div>
   </div>
   <div v-if="torrent.optionsVisible === true" class="space-between flex-row torrent-options-view">
-    <div style="padding-left: 20px;">Torrent options go here</div>
+    <div style="width: 100%; padding-left: 20px;">
+      <div class="flex-row space-evenly">
+        <div class="flex-col space-evenly">
+          <label for="maxDown">Max Download Speed</label>
+          <input v-model="downCap" type="number" class="form-control" id="exampleInputEmail1" placeholder="">
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option v-for="unit in unitsForSpeed">{{ unit }}</option>
+          </select>
+        </div>
+        <div class="flex-col space-evenly" style="">
+          <label for="maxDown">Max Download Speed</label>
+          <input type="number" v-model="upCap" class="form-control" id="exampleInputEmail1" placeholder="">
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option v-for="unit in unitsForSpeed">{{ unit }}</option>
+          </select>
+        </div>
+        <button class="btn btn-success" v-on:click="saveTorrentOptions()">Save</button>
+      </div>
+    </div>
 
     <div class="torrent-icon flex-col center-all torrent-options" align="right">
       <button type="button" class="btn" v-on:click="toggleTorrentOptionsVisible({ torrent: torrent, option: false})">...</button>
@@ -52,7 +70,17 @@ export default {
   props: {
     torrent: Object
   },
+  data () {
+    return {
+      unitsForSpeed: ['MBp/s', 'GBp/s', 'KBp/s'],
+      downCap: '',
+      upCap: ''
+    }
+  },
   methods: {
+    saveTorrentOptions () {
+      alert('Options saved')
+    },
     showDeleteTorrentModal () {
       if (confirm('Do you want to delete this torrent?')) {
         this.deleteTorrent(this.torrent)
