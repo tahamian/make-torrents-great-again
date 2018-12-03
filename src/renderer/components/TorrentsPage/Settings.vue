@@ -76,19 +76,20 @@
           <svg id="graph"></svg>
         </b-container>
 
-        <b-alert v-if="maxUsage == null" show variant="primary">Total usage in period {{usage}} GB</b-alert>
+        <b-alert v-if="maxUsage == null" show variant="primary">
+          Total usage in period {{usage}} GB (No Max usage set)</b-alert>
 
         <b-alert
           v-if="Number(usage) <= Number(maxUsage)"
           show
           variant="success"
-        >Total usage in period {{usage}} GB</b-alert>
+        >Total usage in period {{usage}} GB </b-alert>
 
         <b-alert
           v-if="Number(usage) > Number(maxUsage) && maxUsage != null "
           show
           variant="danger"
-        >Total usage in period {{usage}} GB</b-alert>
+        >Total usage in period {{usage}} GB is Greater than the limit for the period</b-alert>
 
         <b-input-group prepend="Max Usage Limit" append="GB">
           <b-form-input min="0" type="number" v-model="maxUsage" v-on:change="updateMax"></b-form-input>
