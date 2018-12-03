@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="overflow: auto">
     <header 
     v-bind:style="{ 'background-color' :headerBackground }"
     >
