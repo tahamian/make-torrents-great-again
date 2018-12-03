@@ -55,13 +55,14 @@ export default {
   methods: {
     showDeleteTorrentModal () {
       if (confirm('Do you want to delete this torrent?')) {
-        console.log('DELETE!')
+        this.deleteTorrent(this.torrent)
       } else {
         console.log('NEVERMIND!')
       }
     },
     ...mapActions([
-      'toggleTorrentOptionsVisible'
+      'toggleTorrentOptionsVisible',
+      'deleteTorrent'
     ])
   }
 }

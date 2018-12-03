@@ -18,7 +18,7 @@
   <div class="createTorrent" align = "center">
     <b-btn  v-on:click="createTorrentFile()" v-b-modal.modalPopover>Create Torrent File</b-btn>
     <b-modal id="modalPopover" title="Modal with Popover" hide-header ok-only>
-    <p>Finised Creating Torrent File.</p>
+    <p>Finished Creating Torrent File.</p>
     </b-modal>
   </div>
 <div>
