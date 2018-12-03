@@ -109,8 +109,10 @@ export default {
       // this.createTorrentFile(this.write)
     },
     createTorrentFile() {
+     
       var data = [];
       for (var i = 0; i < this.obj.length; i++) {
+  
         if (this.obj[i].check == true) {
           data.push({
             filename: this.obj[i].name,
@@ -129,11 +131,9 @@ export default {
           };
           this.addTorrent(current);
         }
-        this.obj = [];
       }
-      this.write = JSON.stringify(data);
-
-      console.log(this.$store.state.Torrents);
+      this.obj = [];
+      this.write = JSON.stringify(data)
       const fs = require("fs");
       try {
         fs.writeFileSync("torrent.json", this.write, "utf-8");
