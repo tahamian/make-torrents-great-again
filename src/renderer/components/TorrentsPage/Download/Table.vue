@@ -1,21 +1,20 @@
 <template>
  <div class = "table"> 
 <table class="container">
-    <thead>
+    <!-- <thead> -->
       <tr>
-        <th> </th>
+        <th> Download File </th>
         <th>File</th> 
         <th>Category</th>
         <th>Priority</th>
       </tr>
-    </thead>
-    <tbody>
+    <!-- </thead> -->
+    <!-- <tbody> -->
       <tr v-for="item in down">
         <td>
           <b-form-checkbox v-model="item.check">
         </b-form-checkbox>
-        </td>
-        
+        </td>    
         <td> {{item.name}}  </td>
         <td>
           <b-form-select v-model="item.category" class="mb-3" >
@@ -32,7 +31,7 @@
           </b-form-select>
         </td> 
       </tr>
-    </tbody>
+    <!-- </tbody> -->
       </table>
 
   </div>
@@ -98,4 +97,6 @@ let y = []
   text-align: left;
   width: 200px;
 }
+
+/* @import '~vuetify/src/stylus/main' */
 </style>

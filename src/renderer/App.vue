@@ -1,5 +1,6 @@
 <template>
-  <div id="app" style="justify-content: space-between; max-height: 100vh;" class="flex-row">
+  <div id="app" 
+  style="justify-content: space-between; max-height: 100vh;" class="flex-row">
     <div class="side-bar flex-col space-between">
       <div
         class="main-logo box-shadow flex-row center-all"
@@ -36,7 +37,6 @@
       <router-view style="height: 95%;"></router-view>
       <StatsFooter style="height: 5%; border-top: 1px solid #c0c0c0;"></StatsFooter>
     </div>
-
   </div>
 </template>
 
@@ -45,7 +45,7 @@ import './common.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
+// import 'vuetify/dist/vuetify.min.css'
 import './store/index.js'
 
 import StatsFooter from './components/StatsFooter.vue'

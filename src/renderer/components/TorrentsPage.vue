@@ -2,7 +2,9 @@
 <template>
 
 <div class="flex-col">
-  <header class="box-shadow">
+  <header class="box-shadow" 
+  v-bind:style="{ 'background-color' :headerBackground }"
+  >
     <div class="torrent-categories flex-row space-evenly">
       <div
         v-bind:class="{ active: category.name === $store.state.TorrentCategories.active.name }"
@@ -48,6 +50,11 @@ export default {
       return this.$store.state.Torrents.filter((current) => {
         return (activeCategory === 'All' || current.category === activeCategory) && (searchQuery === '' || this.queryMatch(searchQuery, current.name))
       })
+    },
+    headerBackground () {
+      let x = this.$store.state.Settings.currentTheme
+      if (x == 'Dark') { return '#343a40' }
+      else { return '#007bff' }
     }
   },
   methods: {
@@ -80,7 +87,7 @@ export default {
 header
 {
   height: 150px;
-  background-color: #386fff;
+  /* background-color: #386fff; */
 }
 
 .torrent-categories
