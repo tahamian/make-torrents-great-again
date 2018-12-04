@@ -22,11 +22,13 @@
     <b-card title="Added Files" 
     :bg-variant="getColor" 
     :text-variant="getText" 
-    :header-text-variant="getText">
+    :header-text-variant="getText"
+    v-if="obj.length > 0">
       <custom-table :down="obj"></custom-table>
     </b-card>
     <div class="createTorrent" align="center">
       <b-btn v-on:click="createTorrentFile()" v-b-modal.modalPopover>Create Torrent File</b-btn>
+      
       <b-modal id="modalPopover" title="Modal with Popover" hide-header ok-only>
         <p>Finished Creating Torrent File.</p>
       </b-modal>
@@ -127,7 +129,11 @@ export default {
             downloadSpeed: 0,
             uploadSpeed: 0,
             peers: 0,
-            optionsVisible: false
+            optionsVisible: false,
+            type: 'up',
+            time: 0,
+            downLimit: null,
+            upLimit: null
           };
           this.addTorrent(current);
         }

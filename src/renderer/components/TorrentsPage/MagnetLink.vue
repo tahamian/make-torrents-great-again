@@ -3,7 +3,7 @@
     <header 
     v-bind:style="{ 'background-color' :headerBackground }"
     >
-      <div class="create">Create Torrent From Magnet Link</div>
+      <div class="create">Add Torrent From Magnet Link</div>
     </header>
 
     <b-card 
@@ -63,7 +63,7 @@
       </b-container>
 
       <b-modal id="modalPopover" title="Modal with Popover" hide-header ok-only>
-        <p>Finised Creating Torrent File.</p>
+        <p>Finised Adding Torrent File.</p>
       </b-modal>
     </div>
     <div></div>
@@ -162,8 +162,12 @@ export default {
             optionsVisible: false,
             downloadSpeed: 0,
             uploadSpeed: 0,
-            peers: 0,
-            optionsVisible: false
+            peers: Math.floor(Math.random() * 100),
+            optionsVisible: false,
+            type: 'down',
+            time: 0,
+            downLimit: null,
+            upLimit: null
           };
           this.addTorrent(current);
         }

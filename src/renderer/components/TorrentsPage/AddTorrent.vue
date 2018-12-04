@@ -3,7 +3,7 @@
     <header 
     v-bind:style="{ 'background-color' :headerBackground }"
     >
-      <div class="create">Add Torrent by Torrent File</div>
+      <div class="create">Add Torrent using Torrent File</div>
     </header>
     <div id="upload" style="padding:50px">
       <h4>Open Torrent File:</h4>
@@ -40,7 +40,7 @@
     </b-container>
 
     <b-modal id="modalPopover" title="Modal with Popover" hide-header ok-only>
-      <p>Finised Creating Torrent File.</p>
+      <p>Finised Adding Torrent File.</p>
     </b-modal>
     <div></div>
   </div>
@@ -136,6 +136,7 @@ export default {
             path: this.obj[i].path,
             category: this.obj[i].category
           });
+
           var current = {
             category: this.obj[i].category,
             image: "",
@@ -143,8 +144,12 @@ export default {
             optionsVisible: false,
             downloadSpeed: 0,
             uploadSpeed: 0,
-            peers: 0,
-            optionsVisible: false
+            peers: Math.floor(Math.random() * 100),
+            optionsVisible: false,
+            type: 'down',
+            time: 0,
+            downLimit: null,
+            upLimit: null
           };
           this.addTorrent(current);
         }

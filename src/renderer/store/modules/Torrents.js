@@ -9,9 +9,12 @@ let config = require('./../../../../config.json')
 const state = config.SavedTorrents.map((current) => {
   current.downloadSpeed = 0
   current.uploadSpeed = 0
-  current.peers = 0
+  current.peers = Math.floor(Math.random() * 100)
   current.optionsVisible = false
-
+  current.time = 0,
+  current.type = 'down',
+  current.downLimit = null,
+  current.upLimit = null
   return current
 })
 
@@ -53,6 +56,25 @@ const mutations = {
     config.SavedTorrents.splice(index, 1)
 
     fs.writeFileSync('./config.json', JSON.stringify(config), 'utf-8')
+  },
+  
+  UPDATE_DOWN(state, payload) {
+    state.filter( (current) => {
+      return payload.name == current.name
+    })[0].downloadSpeed = payload.downloadSpeed
+  },
+
+  UPDATE_UP(state, payload) {
+    state.filter( (current) => {
+      return payload.name == current.name
+    })[0].uploadSpeed = payload.uploadSpeed
+  },
+  UPDATE_TIME (state, payload) {
+    state.filter((current) => {
+      return payload.name == current.name
+    })[0].time = payload.time + state.filter((current) => {
+      return payload.name == current.name
+    })[0].time
   }
 }
 
@@ -65,6 +87,15 @@ const actions = {
   },
   deleteTorrent(state, payload) {
     state.commit('DELETE_TORRENT', payload)
+  },
+  updateDown (state, payload){
+    state.commit('UPDATE_DOWN', payload)
+  },
+  updateUp (state, payload){
+    state.commit('UPDATE_UP', payload)
+  },
+  updateTime (state, payload) {
+    state.commit('UPDATE_TIME', payload)
   }
 }
 

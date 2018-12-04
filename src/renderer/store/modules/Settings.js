@@ -1,6 +1,6 @@
 const state = {  
-  maxDown: '',
-  maxUp: '',
+  maxDown: null,
+  maxUp: null,
   usuage: null,
   currentLang: 'English',
   currentTheme: 'Light',
