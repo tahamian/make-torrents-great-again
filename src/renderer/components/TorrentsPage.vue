@@ -18,7 +18,7 @@
     </div>
     <div class="search">
       <img class="search-icon" src="static/search.svg">
-      <input v-model="searchQuery" type="text" size="40">
+      <b-form-input v-model="searchQuery" type="text" size="40"> </b-form-input>
     </div>
   </header>
   <content style="overflow-x: auto;">

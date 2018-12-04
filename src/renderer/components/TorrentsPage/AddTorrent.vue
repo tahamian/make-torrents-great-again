@@ -149,16 +149,16 @@ export default {
           this.addTorrent(current);
         }
       }
-      this.write = JSON.stringify(data);
-
-      console.log(this.$store.state.Torrents);
-      const fs = require("fs");
-      try {
-        fs.writeFileSync("torrent.json", this.write, "utf-8");
-        console.log("File Written");
-      } catch (e) {
-        alert("Failed to save the file !");
-      }
+      // this.write = JSON.stringify(data);
+      this.obj = [];
+      // console.log(this.$store.state.Torrents);
+      // const fs = require("fs");
+      // try {
+      //   fs.writeFileSync("torrent.json", this.write, "utf-8");
+      //   console.log("File Written");
+      // } catch (e) {
+      //   alert("Failed to save the file !");
+      // }
     },
     ...mapActions([
       "addTorrent"
