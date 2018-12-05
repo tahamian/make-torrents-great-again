@@ -45,7 +45,6 @@ import './common.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-// import 'vuetify/dist/vuetify.min.css'
 import './store/index.js'
 
 import StatsFooter from './components/StatsFooter.vue'

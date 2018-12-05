@@ -76,7 +76,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import Torrent from "./../Torrent.vue";
 import { mapActions } from "vuex";
-import "vuetify/dist/vuetify.min.css";
 
 export default {
   components: { customTable },

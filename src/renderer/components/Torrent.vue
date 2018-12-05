@@ -12,12 +12,12 @@
 
     <div class="torrent-icon download-icon flex-col space-evenly">
       <img :src="'./static/arrow-downward.svg'">
-      <div>{{ torrent.downloadSpeed }}</div>
+      <div>{{ torrent.downloadSpeed }} MBP/s</div>
     </div>
 
     <div class="torrent-icon upload-icon flex-col space-evenly">
       <img :src="'./static/arrow-upward.svg'">
-      <div>{{ torrent.uploadSpeed }}</div>
+      <div>{{ torrent.uploadSpeed }} MBP/s</div>
     </div>  
 
     <div class="torrent-icon peers-icon flex-col space-evenly">
@@ -86,14 +86,14 @@ export default {
       this.updateTime({name: this.torrent.name, time: 1000}) 
       
       // UPDATE THIS VARIABLE FOR DOWNLOAD--------------------------------------------|
-      let increaseDown = parseFloat(((2* this.torrent.peers)/100) * Math.log(this.torrent.time)).toFixed(2)
+      let increaseDown = Math.max(0, parseFloat(((2* this.torrent.peers)/100) * Math.log(this.torrent.time)).toFixed(2))
       //------------------------------------------------------------------------------|
 
       let maxlocalDown = this.torrent.downLimit == null  || this.torrent.downLimit == '' ? increaseDown : Math.min(increaseDown , this.torrent.downLimit)
       let maxglobalDown = this.$store.getters.getDown == null || this.$store.getters.getDown == '' ? maxlocalDown : Math.min(maxlocalDown, Number(this.$store.getters.getDown))
       
       // UPDATE THIS VARIABLE FOR DOWNLOAD--------------------------------------------|
-      let increaseUp = parseFloat(((2* this.torrent.peers)/100) * Math.log(this.torrent.time)).toFixed(2)
+      let increaseUp = Math.max(0, parseFloat(((2* this.torrent.peers)/100) * Math.log(this.torrent.time)).toFixed(2))
       //------------------------------------------------------------------------------|
       
       let maxlocalUp = this.torrent.upLimit == null  || this.torrent.upLimit == '' ? increaseUp : Math.min(increaseUp , this.torrent.upLimit)
